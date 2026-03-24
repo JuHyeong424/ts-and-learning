@@ -22,7 +22,7 @@ export const users: User[] = [
   },
 ];
 
-export function logPerson(user: { name: string; age: number; occupation: string; }) {
+export function logPerson(user: User) {
   console.log(` - ${user.name}, ${user.age}`);
 }
 
