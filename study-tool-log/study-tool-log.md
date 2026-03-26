@@ -27,7 +27,7 @@
 단순히 switch 문으로 단일 객체의 타입을 좁히는 것을 넘어, 배열에 .filter()를 적용할 때 왜 person is Admin 같은 명시적인 사용자 정의 타입 가드가 필요한지 '공급자와 수비자'의 관점에서 이해했다. 
 
 **제네릭(Generics)을 활용한 책임 분리 설계**:
-`UsersApiResponse`, `AdminsApiResponse`처럼 하드코딩된 중복 타입을 하나의 제네릭 `ApiResponse<T>`로 통합했다. 제네릭 내부에서 `T[]`로 배열을 강제하지 않고, 외부에서 `Admin[]`이나 `number` 등 데이터 형태 자체를 덩어리째 주입하도록 수정했다. 
+- `UsersApiResponse`, `AdminsApiResponse`처럼 하드코딩된 중복 타입을 하나의 제네릭 `ApiResponse<T>`로 통합했다. 제네릭 내부에서 `T[]`로 배열을 강제하지 않고, 외부에서 `Admin[]`이나 `number` 등 데이터 형태 자체를 덩어리째 주입하도록 수정했다. 
 
 - **never 타입을 활용한 완전성 검사**:
 `PowerUser` 같은 새로운 타입이 유니온(|)에 추가되었을 때, 기존 로직이 망가지지 않도록 `switch` 문의 `default` 케이스에 `never 타입`을 할당했다. 발생할 수 있는 모든 케이스를 처리했는지 컴파일러가 강제로 검사하게 만드는 **완전성 검사(Exhaustiveness Checking)**를 추가하여, 예기치 않은 런타임 에러를 사전에 차단하게 했다.
